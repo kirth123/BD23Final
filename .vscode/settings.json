@@ -2,5 +2,6 @@
     "editor.formatOnType": true,
     "[lisp]": {
         "editor.wordSeparators": "`|;:'\",()"
-    }
+    },
+    "julia.environmentPath": "/Users/makendymidouin/Documents/NYU/Fall_2023/Big Data/Project/BDFinal"
 }

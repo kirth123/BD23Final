@@ -35,33 +35,47 @@ const TrafficChart = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('/api/activityByHour');
-      const data = await response.json();
-      const questions = new Array(24).fill(0);
-      const answers = new Array(24).fill(0);
-
-      data.forEach(item => {
-        const hour = item._id.hour;
-        const count = item.count;
-        if (item._id.type === '1') {
-          questions[hour] += count;
-        } else if (item._id.type === '2') {
-          answers[hour] += count;
+      try {
+        const response = await fetch('/api/activityByHour');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      });
-
-      setChartData({
-        ...chartData,
-        datasets: [
-          { ...chartData.datasets[0], data: questions },
-          { ...chartData.datasets[1], data: answers }
-        ]
-      });
+        const data = await response.json();
+  
+        if (!Array.isArray(data)) {
+          throw new Error("Fetched data is not an array");
+        }
+  
+        const questions = new Array(24).fill(0);
+        const answers = new Array(24).fill(0);
+  
+        data.forEach(item => {
+          const hour = item._id.hour;
+          const count = item.count;
+          if (item._id.type === '1') {
+            questions[hour] += count;
+          } else if (item._id.type === '2') {
+            answers[hour] += count;
+          }
+        });
+  
+        setChartData(prevChartData => ({
+          ...prevChartData,
+          datasets: [
+            { ...prevChartData.datasets[0], data: questions },
+            { ...prevChartData.datasets[1], data: answers }
+          ]
+        }));
+  
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle the error based on your application's needs
+      }
     };
-
+  
     fetchData();
   }, []);
-
+  
   const options = {
     scales: {
       x: {
