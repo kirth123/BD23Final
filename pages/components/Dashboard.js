@@ -17,12 +17,14 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
-import Chart from "./Chart";
-import Deposits from "./Deposits";
-import Orders from "./Orders";
+import { MainListItems, SecondaryListItems } from "./listItems";
+import Deposits from "./AverageTimeToAnswer";
 import ActiveHoursPage from "../ActiveHour";
 import MostPop from "../MostPop";
+import TrendsChart from "../TrendChart";
+import DifficultQuestions from "../DifficultQuestions";
+import PopTrendChart from "../PopTrendChart";
+import UserParticipation from "../UserParticipation";
 import PropTypes from "prop-types";
 
 function Copyright(props) {
@@ -35,7 +37,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Big Data
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -88,11 +90,8 @@ const Drawer = styled(MuiDrawer, {
     }),
   },
 }));
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
-
-export default function Dashboard({ isConnected }) {
+export default function Dashboard({ children }) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -151,62 +150,18 @@ export default function Dashboard({ isConnected }) {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            <MainListItems />
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            <SecondaryListItems />
           </List>
         </Drawer>
         <Box
           component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-          }}
+          sx={{ flexGrow: 1, height: "100vh", overflow: "auto" }}
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            {/* Connection Status Message */}
-            {isConnected ? (
-              <Typography variant="h6" gutterBottom>
-                Connected to MongoDB
-              </Typography>
-            ) : (
-              <Typography variant="h6" color="error" gutterBottom>
-                Not connected to MongoDB
-              </Typography>
-            )}
-            <Grid container spacing={3}>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Most Popular Questions */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <MostPop />
-                </Paper>
-              </Grid>
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <ActiveHoursPage />
-                </Paper>
-              </Grid>
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
+            {children}
           </Container>
         </Box>
       </Box>
@@ -215,5 +170,5 @@ export default function Dashboard({ isConnected }) {
 }
 
 Dashboard.propTypes = {
-  isConnected: PropTypes.bool.isRequired,
+  children: PropTypes.node,
 };
