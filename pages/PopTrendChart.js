@@ -63,9 +63,6 @@ const PopTrendChart = () => {
 
   return (
     <>
-      <Typography variant="h6" color="text.primary">
-       Popular Tags
-      </Typography>
       <Dashboard>
         <div style={{ width: "600px", height: "400px" }}>
           <Pie data={chartData} options={options} />

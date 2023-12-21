@@ -100,6 +100,11 @@ const TrafficChart = () => {
       },
     },
     plugins: {
+      title: {
+        display: true,
+        text: 'Activity by Hour',
+        position: 'top',
+      },
       legend: {
         display: true,
         position: "top",

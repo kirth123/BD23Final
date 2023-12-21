@@ -25,9 +25,6 @@ const DifficultQuestions = () => {
 
   return (
     <>
-      <Typography variant="h6" color="text.primary">
-        Difficult Questions
-      </Typography>
       <Dashboard>
         <DataTable data={questions} title="Difficult Questions" />
       </Dashboard>

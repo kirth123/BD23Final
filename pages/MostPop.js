@@ -53,9 +53,6 @@ export default function MostPop() {
 
   return (
     <React.Fragment>
-      <Typography variant="h6" color="text.primary">
-      Popular Questions
-      </Typography>
       <Dashboard>
         <Title>Popular Questions</Title>
         <Table size="small">

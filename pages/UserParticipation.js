@@ -25,9 +25,6 @@ const UserParticipation = () => {
 
   return (
     <>
-      <Typography variant="h6" color="text.primary">
-        User Participations
-      </Typography>
       <Dashboard>
         <DataTable data={questions} title="User Participations" />
       </Dashboard>

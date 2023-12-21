@@ -81,9 +81,6 @@ const TrendsChart = () => {
 
   return (
     <>
-      <Typography variant="h6" color="text.primary">
-        Trend Analysis
-      </Typography>
       <Dashboard>
         <div style={{ width: "600px", height: "400px" }}>
           <Line

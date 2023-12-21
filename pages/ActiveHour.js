@@ -6,9 +6,6 @@ const ActiveHoursPage = () => {
   const theme = useTheme();
   return (
     <>
-        <Typography variant="h6" color="text.primary">
-          Active Hours
-        </Typography>
         <TrafficChart />
     </>
   );

@@ -30,9 +30,6 @@ function StackOverflowPostsPage() {
 
   return (
     <>
-      <Typography variant="h6" color="text.primary">
-        Top Stack Overflow Posts
-      </Typography>
       <Dashboard>
         <div>
           <h1>Top Stack Overflow Posts</h1>
