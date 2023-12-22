@@ -11,10 +11,10 @@ export default async (req, res) => {
                 "$group": {
                     "_id": "$OwnerUserId",
                     "questionsAsked": {
-                        "$sum": {"$cond": [{"$eq": ["$PostTypeId", "1"]}, 1, 0]}
+                        "$sum": {"$cond": [{"$eq": ["$PostTypeId", 1]}, 1, 0]}
                     },
                     "answersGiven": {
-                        "$sum": {"$cond": [{"$eq": ["$PostTypeId", "2"]}, 1, 0]}
+                        "$sum": {"$cond": [{"$eq": ["$PostTypeId", 2]}, 1, 0]}
                     }
                 }
             },

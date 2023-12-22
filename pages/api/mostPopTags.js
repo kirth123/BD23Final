@@ -7,19 +7,20 @@ export default async (req, res) => {
 
         // Define the pipeline for aggregating the most popular tags
         const popularTagsPipeline = [
-            { "$match": { "PostTypeId": "1" } }, // Filter for questions
-            { "$unwind": "$Tags" },
+            { "$limit": 10000 }, // Limit the number of documents for processing
+            { "$match": { "PostTypeId": 1 } }, // Filter for questions
+            { "$unwind": "$Tags" }, // Unwind the Tags array
             { "$group": {
                 "_id": "$Tags",
                 "count": { "$sum": 1 }
             }},
             { "$sort": { "count": -1 } },
-            { "$limit": 10 }
+            { "$limit": 10 } // Limit the number of tags returned
         ];
-
-        // Execute the aggregation pipeline
+        
+        // Assuming 'StackOverflowPosts' is your collection name
         const popularTags = await db
-            .collection("StackOverflowPostsSample") // Replace with your actual collection name
+            .collection("StackOverflowPosts")
             .aggregate(popularTagsPipeline)
             .toArray();
 

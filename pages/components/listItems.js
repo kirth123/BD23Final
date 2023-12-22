@@ -34,6 +34,12 @@ export const MainListItems = () => {
   const handleTrendNavigation = () => {
     router.push('/TrendChart');
   };
+  const handleSimilarNavigation = () => {
+    router.push('/TopSimilarQuestions');
+  };
+  const handleParticipationNavigation = () => {
+    router.push('/UserParticipation');
+  };
   return (
     <React.Fragment>
       <ListItemButton onClick={handleDifficultQuestNavigation}>
@@ -71,6 +77,18 @@ export const MainListItems = () => {
           <LayersIcon />
         </ListItemIcon>
         <ListItemText primary="Trend analysis" />
+      </ListItemButton>
+      <ListItemButton onClick={handleSimilarNavigation}>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary="Similar Sugesstions" />
+      </ListItemButton>
+      <ListItemButton onClick={handleParticipationNavigation}>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary="User Participation" />
       </ListItemButton>
     </React.Fragment>
   );
